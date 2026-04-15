@@ -11,7 +11,7 @@ class TelaExperiencia extends StatefulWidget{
   }
 
 class _TelaExperienciaState extends State<TelaExperiencia> {
-  List<Experiencia> listaExp = [];
+  List<Experiencia> listaExp = []; //mais pra frente n eaquece de criar o class experiencia
 
   @override
  Widget build(BuildContext context){
@@ -19,6 +19,23 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
     appBar: AppBar(
       title: Text("Experiências"),
     ),
+    body: ListView.builder(
+      itemCount: listaExp.length,
+      itemBuilder: (context, index){
+        return Column(
+          children: [
+            Card(
+              child: ListTile(
+                title: Text(listaExp[index].empresa),
+                subtitle: Text(
+                  
+                )
+              ),
+            )
+          
+        ],)
+      },
+    )
   )
 
  }

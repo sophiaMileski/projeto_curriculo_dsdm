@@ -8,7 +8,7 @@ class TelaExperiencia extends StatefulWidget{
   @override
   State<TelaExperiencia> createState()=> _TelaExperienciaState(); 
    
-  }
+}
 
 class _TelaExperienciaState extends State<TelaExperiencia> {
   List<Experiencia> listaExp = []; //mais pra frente n eaquece de criar o class experiencia
@@ -28,18 +28,38 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
               child: ListTile(
                 title: Text(listaExp[index].empresa),
                 subtitle: Text(
+                  "${listaExp[index].inicio} - ${listaExp[index].fim}",
+
                   
-                )
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: (){
+                    setState(() {
+                      listaExp.removeAt(index);
+                    });
+                  },
+                ),
               ),
-            )
-          
-        ],)
-      },
-    )
-  )
-
- }
+            ),
+          Divider(),
+        ],
+      );
+    },
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {},
+      child: Icon(Icons.add),
+    ),
+  );
   }
+}
+class Experiencia {
+  String empresa;
+  String inicio;
+  String fim;
 
+  Experiencia(this.empresa, this.inicio, this.fim);
+}
 
 

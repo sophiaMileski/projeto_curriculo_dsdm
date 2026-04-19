@@ -64,28 +64,49 @@ class Experiencia{
   Experiencia(this.empresa, this.ano, this.cargo);
 }
 
-class TelaExperiencia extends StatefulWidget{
+class TelaExperiencia extends StatefulWidget {
   @override
-  State<TelaExperiencia> createState() => _TelaExperienciaState(); 
+  State<TelaExperiencia> createState() => _TelaExperienciaState();
 }
-class _TelaExperienciaState extends State<TelaExperiencia>{
+
+class _TelaExperienciaState extends State<TelaExperiencia> {
   List<Experiencia> lista = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar
-      (title: Text("Experiência")),
+      appBar: AppBar(
+        title: Text("Experiência"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormExperiencia()),
+              ).then((exp) {
+                if (exp != null) {
+                  setState(() {
+                    lista.add(exp);
+                  });
+                }
+              });
+            },
+          ),
+        ],
+      ),
+
       body: ListView.builder(
         itemCount: lista.length,
-        itemBuilder:(context, index) {
+        itemBuilder: (context, index) {
           return Column(
             children: [
               Card(
                 child: ListTile(
                   leading: Icon(Icons.work),
                   title: Text(lista[index].empresa),
-                  subtitle: Text("${lista[index].cargo} (${lista[index].ano})"),
+                  subtitle:
+                      Text("${lista[index].cargo} (${lista[index].ano})"),
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () {
@@ -93,18 +114,31 @@ class _TelaExperienciaState extends State<TelaExperiencia>{
                         lista.removeAt(index);
                       });
                     },
-                    ),
+                  ),
                 ),
               ),
               Divider(),
             ],
-
           );
         },
       ),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => FormExperiencia()),
+          ).then((exp) {
+            if (exp != null) {
+              setState(() {
+                lista.add(exp);
+              });
+            }
+          });
+        },
+        child: Icon(Icons.add),
+      ),
     );
-    
   }
 }
 class FormExperiencia extends StatelessWidget{

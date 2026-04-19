@@ -296,3 +296,86 @@ class FormProjeto extends StatelessWidget {
     );
   }
 }
+class Escolaridade {
+  String curso;
+  String escola;
+
+  Escolaridade(this.curso, this.escola);
+}
+
+class TelaEscolaridade extends StatefulWidget {
+  @override
+  State<TelaEscolaridade> createState() => _TelaEscolaridadeState();
+}
+
+class _TelaEscolaridadeState extends State<TelaEscolaridade> {
+  List<Escolaridade> lista = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Escolaridade"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormEscolaridade()),
+              ).then((esc) {
+                if (esc != null) {
+                  setState(() {
+                    lista.add(esc);
+                  });
+                }
+              });
+            },
+          ),
+        ],
+      ),
+
+      body: ListView.builder(
+        itemCount: lista.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.school),
+                  title: Text(lista[index].curso),
+                  subtitle: Text(lista[index].escola),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        lista.removeAt(index);
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Divider(),
+            ],
+          );
+        },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => FormEscolaridade()),
+          ).then((esc) {
+            if (esc != null) {
+              setState(() {
+                lista.add(esc);
+              });
+            }
+          });
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}

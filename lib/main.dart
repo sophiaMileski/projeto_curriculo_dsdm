@@ -379,3 +379,34 @@ class _TelaEscolaridadeState extends State<TelaEscolaridade> {
     );
   }
 }
+class FormEscolaridade extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController curso = TextEditingController();
+    TextEditingController escola = TextEditingController();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Nova Escolaridade")),
+      body: Column(
+        children: [
+          TextField(
+            controller: curso,
+            decoration: InputDecoration(labelText: "Curso"),
+          ),
+          TextField(
+            controller: escola,
+            decoration: InputDecoration(labelText: "Escola"),
+          ),
+
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(
+                  context, Escolaridade(curso.text, escola.text));
+            },
+            child: Text("Salvar"),
+          )
+        ],
+      ),
+    );
+  }
+}

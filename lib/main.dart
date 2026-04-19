@@ -146,3 +146,10 @@ class FormExperiencia extends StatelessWidget{
     );
   }
 }
+
+class Projeto{
+  String nome;
+  String descricao;
+  Projeto(this.nome, this.descricao);
+
+}

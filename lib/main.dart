@@ -74,7 +74,8 @@ class _TelaExperienciaState extends State<TelaExperiencia>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Experiência")),
+      appBar: AppBar
+      (title: Text("Experiência")),
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder:(context, index) {
@@ -89,7 +90,7 @@ class _TelaExperienciaState extends State<TelaExperiencia>{
                     icon: Icon(Icons.delete),
                     onPressed: () {
                       setState(() {
-                        lista.remove(index);
+                        lista.removeAt(index);
                       });
                     },
                     ),

@@ -56,10 +56,53 @@ class TelaInicial extends StatelessWidget{
   }
 }
 
-class Experiência{
+class Experiencia{
   String empresa;
   String ano;
   String cargo;
 
   Experiencia(this.empresa, this.ano, this.cargo);
+}
+
+class TelaExperiencia extends StatefulWidget{
+  @override
+  State<TelaExperiencia> createState() => _TelaExperienciaState(); 
+}
+class _TelaExperienciaState extends State<TelaExperiencia>{
+  List<Experiencia> lista = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Experiência")),
+      body: ListView.builder(
+        itemCount: lista.length,
+        itemBuilder:(context, index) {
+          return Column(
+            children: [
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.work),
+                  title: Text(lista[index].empresa),
+                  subtitle: Text("${lista[index].cargo} (${lista[index].ano})"),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        lista.remove(index);
+                      });
+                    },
+                    ),
+                ),
+              ),
+              Divider(),
+            ],
+
+          );
+        },
+      ),
+
+    );
+    
+  }
 }

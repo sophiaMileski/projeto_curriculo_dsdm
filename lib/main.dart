@@ -188,3 +188,80 @@ class Projeto{
   Projeto(this.nome, this.descricao);
 
 }
+
+class TelaProjetos extends StatefulWidget {
+  @override
+  State<TelaProjetos> createState() => _TelaProjetosState();
+}
+
+class _TelaProjetosState extends State<TelaProjetos> {
+  List<Projeto> lista = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Projetos"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormProjeto()),
+              ).then((proj) {
+                if (proj != null) {
+                  setState(() {
+                    lista.add(proj);
+                  });
+                }
+              });
+            },
+          ),
+        ],
+      ),
+
+      body: ListView.builder(
+        itemCount: lista.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.code),
+                  title: Text(lista[index].nome),
+                  subtitle: Text(lista[index].descricao),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        lista.removeAt(index);
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Divider(),
+            ],
+          );
+        },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => FormProjeto()),
+          ).then((proj) {
+            if (proj != null) {
+              setState(() {
+                lista.add(proj);
+              });
+            }
+          });
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}

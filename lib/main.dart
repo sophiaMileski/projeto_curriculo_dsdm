@@ -58,11 +58,11 @@ class TelaInicial extends StatelessWidget {
     );
   }
 }
-class Experiencia{
+class Experiencia {
   String empresa;
   String ano;
   String cargo;
-
+ 
   Experiencia(this.empresa, this.ano, this.cargo);
 }
 
@@ -70,34 +70,17 @@ class TelaExperiencia extends StatefulWidget {
   @override
   State<TelaExperiencia> createState() => _TelaExperienciaState();
 }
-
+ 
 class _TelaExperienciaState extends State<TelaExperiencia> {
   List<Experiencia> lista = [];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Experiência"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => FormExperiencia()),
-              ).then((exp) {
-                if (exp != null) {
-                  setState(() {
-                    lista.add(exp);
-                  });
-                }
-              });
-            },
-          ),
-        ],
+        backgroundColor: Colors.pink,
       ),
-
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
@@ -107,8 +90,7 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
                 child: ListTile(
                   leading: Icon(Icons.work),
                   title: Text(lista[index].empresa),
-                  subtitle:
-                      Text("${lista[index].cargo} (${lista[index].ano})"),
+                  subtitle: Text("${lista[index].cargo} (${lista[index].ano})"),
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () {
@@ -124,8 +106,8 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
           );
         },
       ),
-
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
         onPressed: () {
           Navigator.push(
             context,
@@ -143,6 +125,7 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
     );
   }
 }
+ 
 class FormExperiencia extends StatelessWidget{
   @override
   Widget build(BuildContext context) {

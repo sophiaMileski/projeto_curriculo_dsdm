@@ -350,28 +350,35 @@ class FormEscolaridade extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController curso = TextEditingController();
     TextEditingController escola = TextEditingController();
-
+ 
     return Scaffold(
-      appBar: AppBar(title: Text("Nova Escolaridade")),
-      body: Column(
-        children: [
-          TextField(
-            controller: curso,
-            decoration: InputDecoration(labelText: "Curso"),
-          ),
-          TextField(
-            controller: escola,
-            decoration: InputDecoration(labelText: "Escola"),
-          ),
-
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(
-                  context, Escolaridade(curso.text, escola.text));
-            },
-            child: Text("Salvar"),
-          )
-        ],
+      appBar: AppBar(
+        title: Text("Nova Escolaridade"),
+        backgroundColor: Colors.pink,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: curso,
+              decoration: InputDecoration(labelText: "Curso"),
+            ),
+            TextField(
+              controller: escola,
+              decoration: InputDecoration(labelText: "Instituição"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (curso.text != '' && escola.text != '') {
+                  Navigator.pop(context, Escolaridade(curso.text, escola.text));
+                }
+              },
+              child: Text("Salvar"),
+            ),
+          ],
+        ),
       ),
     );
   }

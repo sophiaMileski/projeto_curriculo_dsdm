@@ -289,34 +289,17 @@ class TelaEscolaridade extends StatefulWidget {
   @override
   State<TelaEscolaridade> createState() => _TelaEscolaridadeState();
 }
-
+ 
 class _TelaEscolaridadeState extends State<TelaEscolaridade> {
   List<Escolaridade> lista = [];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Escolaridade"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => FormEscolaridade()),
-              ).then((esc) {
-                if (esc != null) {
-                  setState(() {
-                    lista.add(esc);
-                  });
-                }
-              });
-            },
-          ),
-        ],
+        backgroundColor: Colors.pink,
       ),
-
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
@@ -342,8 +325,8 @@ class _TelaEscolaridadeState extends State<TelaEscolaridade> {
           );
         },
       ),
-
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
         onPressed: () {
           Navigator.push(
             context,
@@ -361,6 +344,7 @@ class _TelaEscolaridadeState extends State<TelaEscolaridade> {
     );
   }
 }
+ 
 class FormEscolaridade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

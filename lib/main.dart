@@ -184,34 +184,17 @@ class TelaProjetos extends StatefulWidget {
   @override
   State<TelaProjetos> createState() => _TelaProjetosState();
 }
-
+ 
 class _TelaProjetosState extends State<TelaProjetos> {
   List<Projeto> lista = [];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Projetos"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => FormProjeto()),
-              ).then((proj) {
-                if (proj != null) {
-                  setState(() {
-                    lista.add(proj);
-                  });
-                }
-              });
-            },
-          ),
-        ],
+        backgroundColor: Colors.pink,
       ),
-
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
@@ -237,8 +220,8 @@ class _TelaProjetosState extends State<TelaProjetos> {
           );
         },
       ),
-
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
         onPressed: () {
           Navigator.push(
             context,
@@ -256,7 +239,7 @@ class _TelaProjetosState extends State<TelaProjetos> {
     );
   }
 }
-
+ 
 class FormProjeto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

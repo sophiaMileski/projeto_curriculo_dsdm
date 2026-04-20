@@ -245,27 +245,35 @@ class FormProjeto extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController nome = TextEditingController();
     TextEditingController descricao = TextEditingController();
-
+ 
     return Scaffold(
-      appBar: AppBar(title: Text("Novo Projeto")),
-      body: Column(
-        children: [
-          TextField(
-            controller: nome,
-            decoration: InputDecoration(labelText: "Nome"),
-          ),
-          TextField(
-            controller: descricao,
-            decoration: InputDecoration(labelText: "Descrição"),
-          ),
-
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context, Projeto(nome.text, descricao.text));
-            },
-            child: Text("Salvar"),
-          )
-        ],
+      appBar: AppBar(
+        title: Text("Novo Projeto"),
+        backgroundColor: Colors.pink,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: nome,
+              decoration: InputDecoration(labelText: "Nome"),
+            ),
+            TextField(
+              controller: descricao,
+              decoration: InputDecoration(labelText: "Descrição"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (nome.text != '' && descricao.text != '') {
+                  Navigator.pop(context, Projeto(nome.text, descricao.text));
+                }
+              },
+              child: Text("Salvar"),
+            ),
+          ],
+        ),
       ),
     );
   }

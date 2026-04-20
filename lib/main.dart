@@ -126,47 +126,53 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
   }
 }
  
-class FormExperiencia extends StatelessWidget{
+class FormExperiencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController empresa = TextEditingController();
-    TextEditingController ano = TextEditingController();
     TextEditingController cargo = TextEditingController();
-
+    TextEditingController ano = TextEditingController();
+ 
     return Scaffold(
-      appBar: AppBar(title: Text("Nova Experiência")),
+      appBar: AppBar(
+        title: Text("Nova Experiência"),
+        backgroundColor: Colors.pink,
+      ),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(controller: empresa, decoration: InputDecoration(labelText: "Empresa")),
-            TextField(controller: empresa, decoration: InputDecoration(labelText: "Cargo")),
-            TextField(controller: empresa, decoration: InputDecoration(labelText: "Ano")),
-
+            TextField(
+              controller: empresa,
+              decoration: InputDecoration(labelText: "Empresa"),
+            ),
+            TextField(
+              controller: cargo,
+              decoration: InputDecoration(labelText: "Cargo"),
+            ),
+            TextField(
+              controller: ano,
+              decoration: InputDecoration(labelText: "Ano"),
+            ),
             SizedBox(height: 20),
-
             ElevatedButton(
               onPressed: () {
-                if (empresa.text != '' &&
-                    cargo.text != '' &&
-                    ano.text != '' ) {
+                if (empresa.text != '' && cargo.text != '' && ano.text != '') {
                   Navigator.pop(
                     context,
-                    Experiencia(
-                      empresa.text, ano.text, cargo.text));
-
-                    }
-                
+                    Experiencia(empresa.text, ano.text, cargo.text),
+                  );
+                }
               },
               child: Text("Salvar"),
-              )
+            ),
           ],
-        ), 
         ),
+      ),
     );
   }
 }
-
+ 
 class Projeto{
   String nome;
   String descricao;

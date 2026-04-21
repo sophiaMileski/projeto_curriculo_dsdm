@@ -22,7 +22,7 @@ class TelaInicial extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/foto.png'),
+              backgroundImage: AssetImage('assets/foto.jpeg'),
             ),
             SizedBox(height: 30),
             ElevatedButton(

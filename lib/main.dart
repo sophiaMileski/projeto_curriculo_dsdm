@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 void  main(){
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: TelaInicial(),
   ));
 
@@ -75,11 +76,28 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
   List<Experiencia> lista = [];
  
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Experiência"),
         backgroundColor: Colors.pink,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormExperiencia()),
+              ).then((exp) {
+                if (exp != null) {
+                  setState(() {
+                    lista.add(exp);
+                  });
+                }
+              });
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: lista.length,
@@ -106,25 +124,10 @@ class _TelaExperienciaState extends State<TelaExperiencia> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pink,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => FormExperiencia()),
-          ).then((exp) {
-            if (exp != null) {
-              setState(() {
-                lista.add(exp);
-              });
-            }
-          });
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
+ 
  
 class FormExperiencia extends StatelessWidget {
   @override
@@ -185,6 +188,7 @@ class TelaProjetos extends StatefulWidget {
   State<TelaProjetos> createState() => _TelaProjetosState();
 }
  
+ 
 class _TelaProjetosState extends State<TelaProjetos> {
   List<Projeto> lista = [];
  
@@ -194,6 +198,23 @@ class _TelaProjetosState extends State<TelaProjetos> {
       appBar: AppBar(
         title: Text("Projetos"),
         backgroundColor: Colors.pink,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormProjeto()),
+              ).then((proj) {
+                if (proj != null) {
+                  setState(() {
+                    lista.add(proj);
+                  });
+                }
+              });
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: lista.length,
@@ -219,22 +240,6 @@ class _TelaProjetosState extends State<TelaProjetos> {
             ],
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pink,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => FormProjeto()),
-          ).then((proj) {
-            if (proj != null) {
-              setState(() {
-                lista.add(proj);
-              });
-            }
-          });
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
@@ -299,6 +304,23 @@ class _TelaEscolaridadeState extends State<TelaEscolaridade> {
       appBar: AppBar(
         title: Text("Escolaridade"),
         backgroundColor: Colors.pink,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => FormEscolaridade()),
+              ).then((esc) {
+                if (esc != null) {
+                  setState(() {
+                    lista.add(esc);
+                  });
+                }
+              });
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: lista.length,
@@ -324,22 +346,6 @@ class _TelaEscolaridadeState extends State<TelaEscolaridade> {
             ],
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pink,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => FormEscolaridade()),
-          ).then((esc) {
-            if (esc != null) {
-              setState(() {
-                lista.add(esc);
-              });
-            }
-          });
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
